@@ -21,3 +21,6 @@ Team members: -->
 
 # Introduction:
 This is our project
+
+# Data Collection:
+This is how we got our data
