@@ -20,7 +20,44 @@ Team members: -->
 7. [Description of Repository](#Description-of-Repository)
 
 ## Introduction
-This is our project
 
-## Data Collection
-This is how we got our data
+Humans cause approximately 85% of wildfires leading to billions of dollars worth of damage every year in the United States alone. By predicting where ongoing wildfire will spread, we can mitigate these significant costs by optimally allocating resources to start suppression efforts.
+
+## Data-Collection
+
+For each fire, the dataset has tweleve defining features:
+* Previous fire mask
+* ERC
+* Elevation
+* Drought
+* Minimum temperature
+* Maximum temperature
+* Wind direction
+* Vegetation
+* Precipitation
+* Population
+* Humidity
+* Wind speed
+
+The data is presented as 64 km x 64 km grids with 1 km resolution. We randomly crop a 32 km x 32 km square from each region for training, to reduce the computational complexity. We use the middle 32 km x 32 km square from each region for validation and testing. 
+
+Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 98% of the total dataset is not on fire. The remaining portion, up to 2.4%, of our data is missing, usually due to smoke or cloud cover. This data is not used when evaluating the accuracy of the model.
+
+
+## Exploratory-Data-Analysis
+
+The most important features in predicting wildfire spread are:
+* the previous fire mask
+* wind direction
+* wind speed
+* energy release component
+
+
+
+## Predictability-of-Wildfire-Spread
+
+
+## Modeling-Approach
+
+
+## Conclusions-and-Future-Directions
