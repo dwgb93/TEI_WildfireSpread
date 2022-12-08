@@ -59,7 +59,10 @@ The dataset can be downloaded directly from [Kaggle](https://www.kaggle.com/data
 
 ## Exploratory Data Analysis
 
-Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 97% of the total dataset is not on fire. The remaining portion, more than 2% of our data is missing, usually due to smoke or cloud cover. This data is not used for training or evaluating the accuracy of the model.
+Only ~1% of the land in our dataset is on fire. Approximately 97% of the total dataset is not on fire. The remaining portion, more than 2% of our data is missing, usually due to smoke or cloud cover. Unfortunately, it isn't 2% of every image that is bad, but varies from image to image, producing a few particularly egregious examples where accurate predictions are nearly impossible. This data is not used for training or evaluating the accuracy of the model.
+
+**Adversarial Data:**
+![My image](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/pictures/BadData.png?raw=True)
 
 The most important features that predict wildfire spread in the **logistic regression model** are:
 
