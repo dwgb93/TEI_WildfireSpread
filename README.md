@@ -28,7 +28,7 @@ Using data of wildfires in the United States from 2012 to 2020 (Huot et al., 202
 * How accurately can we predict where wildfires will spread?
 
 
-## Data-Collection
+## Data Collection
 
 By accessing the remote sensing technologies and combining the data via Google Earth Engine (GEE), the dataset consists of 11 environmental features: 
 * Drought
@@ -50,7 +50,7 @@ The dataset also has an additional feature that includes the previous fire mask 
 Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 98% of the total dataset is not on fire. The remaining portion, up to 2.4%, of our data is missing, most likely due to smoke or cloud cover. This data is not used when evaluating the accuracy of the model.
 
 
-## Exploratory-Data-Analysis
+## Exploratory Data Analysis
 
 The most important features that predict wildfire spread in the **logistic regression model** is:
 
@@ -89,15 +89,15 @@ And in the **random forest model**:
 | Precipitation | 0.005260 |
 
 
-## Predictability-of-Wildfire-Spread
+## Predictability of Wildfire Spread
 
 Predicting wildfire spread from this dataset is challenging because approximately 98% of the data is not on fire. We also make the assumption that no fire suppression efforts have been made.  
 
-## Modeling-Approach
+## Modeling Approach
 
 To determine the locations that will be on fire the next day, we used 3 models:
 1. Sklearn classifiers: Logistic Regression and Random Forest
-2. TensorFlow: Convolutional Neural Network. 
+2. Keras: Convolutional Neural Network. 
 
 Precision indicates the fraction of our fire predictions that are accurate whereas recall gives the fraction of the actual fires that are correctly predicted. The area under the precision–recall curve provides a more effective metric for imbalanced binary classification since the dataset mostly contained no fire.
 
@@ -115,7 +115,7 @@ The logistic regression and random forest models lacked spatial awareness of the
 
 Neural network uses spatial information along with 2.3 million parameters to predict whether each 1x1 km area will be on fire or not. Since the trained model can be evaluated on a new datapoint instantaneously, as soon as the fire mask is created, first responders could run the model in minutes.
 
-## Conclusions-and-Future-Directions
+## Conclusions and Future Directions
 
 Wildfires are an inevitable part of our lives due to humans being the cause of 85% of fires. Predicting where the wildfire will spread helps rescue teams to distribute resources accordingly. Predicting wildfire spread  allows emergency rescue teams and citizens to properly prepare evacuation and relief strategies. 
 
