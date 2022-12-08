@@ -114,7 +114,7 @@ Table: * denotes the value is better than the baseline and the boldened values r
 
 The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1x1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you or not. These models can work as a baseline, but they are not very helpful. 
 
-Neural network uses spatial information along with 2.3 million parameters to predict whether each 1x1 km area will be on fire or not. This trained model can be evaluated on a new datapoint instantaneously, so as soon as the fire mask is created, first responders could run the model in minutes.
+Neural network uses spatial information along with 2.3 million parameters to predict whether each 1x1 km area will be on fire or not. Since the trained model can be evaluated on a new datapoint instantaneously, as soon as the fire mask is created, first responders could run the model in minutes.
 
 ## Conclusions-and-Future-Directions
 
