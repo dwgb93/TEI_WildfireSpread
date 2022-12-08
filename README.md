@@ -59,9 +59,9 @@ This problem is challenging because approximately 98% of the data is not on fire
 
 ## Modeling-Approach
 
-The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1 by 1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you. In the image here, you can see they end up predicting that there will be a fire where there already is a fire, but it doesn’t spread. This works as a baseline, but it’s not very helpful. 
+The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1 by 1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you. These models can work as a baseline, but they are not going to be very helpful. 
 
-Neural network allows us to account for the location and direction of the fire.
+Neural network uses spatial information along with 2.3 million parameters to predict whether each 1x1 km area will be on fire or not.
 
 
 ## Conclusions-and-Future-Directions
