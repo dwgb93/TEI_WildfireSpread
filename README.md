@@ -21,7 +21,7 @@ Team members: -->
 
 ## Introduction
 
-Wildfires endanger lives, property, and the environment. Unfortunately, humans are the cause for approximately 85% of wildfires leading to billions of dollars worth of damage every year in the United States alone. By predicting where ongoing wildfire will spread, we can mitigate these significant costs by optimally allocating resources to start evacuation and suppression efforts.
+Wildfires endanger lives, property, and the environment. Unfortunately, humans are the cause for approximately 85% of wildfires leading to thousands of deaths and billions of dollars worth of damage every year in the United States alone. By predicting where ongoing wildfire will spread, we can mitigate these significant costs  for stakeholders, like first responders and civilians, by optimally allocating resources to start evacuation and suppression efforts.
 
 Using data of wildfires in the United States from 2012 to 2020 (Huot et al., 2022), the following questions can be answered:
 * Which features are most important in wildfire spread prediction?
@@ -47,12 +47,12 @@ By accessing the remote sensing technologies and combining the data via Google E
 
 The dataset also has an additional feature that includes the previous fire mask making the dataset have 18,545 fire events which are presented as 64 km x 64 km grids with 1 km resolution. We randomly crop a 32 km x 32 km square from each region for training, to reduce the computational complexity. We use the middle 32 km x 32 km square from each region for validation and testing. 
 
-Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 97% of the total dataset is not on fire, with only ~1% being on fire. The remaining portion, more than 2% of our data is missing, usually due to smoke or cloud cover. This data is not used when evaluating the accuracy of the model.
+Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 97% of the total dataset is not on fire. The remaining portion, more than 2% of our data is missing, usually due to smoke or cloud cover. This data is not used for training or evaluating the accuracy of the model.
 
 
 ## Exploratory Data Analysis
 
-The most important features that predict wildfire spread in the **logistic regression model** is:
+The most important features that predict wildfire spread in the **logistic regression model** are:
 
 
 | Feature | Importance |
@@ -124,17 +124,17 @@ Since the trained model can be evaluated on a new datapoint almost instantaneous
 
 ## Conclusions and Future Directions
 
-Wildfires are an inevitable part of our lives due to humans being the cause of 85% of fires. Predicting where the wildfire will spread helps rescue teams to distribute resources accordingly. Predicting wildfire spread allows emergency rescue teams and citizens to properly prepare evacuation and relief strategies.
+Wildfires are an inevitable part of the lives of millions of Americans, resulting in thousands of deaths and billions of dollars in damage every year. Predicting where  wildfires will spread helps rescue teams to distribute resources accordingly. Predicting wildfire spread allows stakeholders to properly prepare evacuation and relief strategies.
 
-In the future, these models could be applied to international data to predict wildfire spread in those regions. The models could be improved upon by accounting for existing fire suppression efforts.
+Our models were only trained on wildfires in the United States. In the future, these models could be applied to international data to determine if they still able to  accurately predict wildfire spread in those regions. The models could be improved upon by accounting for existing fire suppression efforts.
 
-These wildfire spread prediction models could potentially save the United States hundreds of thousands of dollars in suppression efforts. The models can decrease the time in which resources are allotted, which will lead to a decrease in fire damage and deaths.
+These wildfire spread prediction models could potentially save the hundreds of lives and millions of dollars in suppression efforts by optimizing resource allocation and management. The models can decrease the time it takes for resources to be allotted, which will lead to a decrease in fire damage and deaths.
 
 ## Description of Repository
 The repository is very simple: all the notebooks we used for visualizing, analyzing, and evaluating the data are in the _notebooks_ folder!
 
 * [kaggle_next_day_wildfire_demo.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/kaggle_next_day_wildfire_demo.ipynb) - This is a Jupyter Notebook demonstrating how to load and parse the data set. It was copied directly from the authors' [GitHub page](https://github.com/google-research/google-research/tree/master/simulation_research/next_day_wildfire_spread) and tweaked slightly to remove bugs.
-* [Wildfire_EDA.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/Wildfire_EDA.ipynb) - Contains exploratory data analysis, including findinding outliers (nevative elevation/wind speed, absolute 0 temperature, etc.), and calculating properties of the data set (how much fire is there? how much data is missing?)
+* [Wildfire_EDA.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/Wildfire_EDA.ipynb) - Contains exploratory data analysis, including finding outliers (nevative elevation/wind speed, absolute 0 temperature, etc.), and calculating properties of the data set (how much fire is there? how much data is missing?)
 
 The next three notebooks contain the three models we used to predict fire spread: Logistic Regression, Random Forst, Convolutional Neural Network (U-Net). For each of them, they import the dataset from Google Drive (you will have to change the location to where your data is stored locally), run the commands from [kaggle_next_day_wildfire_demo.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/kaggle_next_day_wildfire_demo.ipynb) to parse and normalize the inputs, then train the model and output the relevant statistics. 
 
