@@ -65,3 +65,10 @@ Neural network uses spatial information along with 2.3 million parameters to pre
 
 
 ## Conclusions-and-Future-Directions
+
+Wildfires are an inevitable part of our lives due to humans being the cause of 85% of fires. Predicting where the wildfire will spread helps rescue teams to distribute resources accordingly. Predicting wildfire spread  allows emergency rescue teams and citizens to properly prepare evacuation and relief strategies. 
+
+In the future, these models could be applied to international data to predict wildfire spread in those regions. The models could be improved upon by accounting for existing fire suppression efforts. 
+
+These wildfire sprread prediction models could potentially save the United States hundreds of thousands of dollars in suppression efforts.
+
