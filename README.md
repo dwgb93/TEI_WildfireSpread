@@ -3,7 +3,7 @@ Predictions of where a fire will spread in the upcoming day are essential to wil
 
 Our goal is to use the Next Day Wildfire Spread dataset to predict where wildfires will spread, identifying areas for optimal resource allocation and evacuation, hopefully saving lives.
 
-F. Huot, R. L. Hu, N. Goyal, T. Sankar, M. Ihme, and Y.-F. Chen, “[Next Day Wildfire Spread: A Machine Learning Data Set to Predict Wildfire Spreading from Remote-Sensing Data](https://arxiv.org/pdf/2112.02447.pdf)”, arXiv preprint, 2021.
+F. Huot, R. L. Hu, N. Goyal, T. Sankar, M. Ihme, and Y.-F. Chen, “[Next Day Wildfire Spread: A Machine Learning Data Set to Predict Wildfire Spreading from Remote-Sensing Data](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9840400)”, IEEE Transactions on Geoscience And Remote Sensing, 60, 2022.
 
 
 
@@ -21,11 +21,16 @@ Team members: -->
 
 ## Introduction
 
-Humans cause approximately 85% of wildfires which leads to billions of dollars worth of damage every year in the United States alone. By predicting where ongoing wildfire will spread, we can mitigate these significant costs by optimally allocating resources to start suppression efforts.
+Wildfires endanger lives, property, and the environment. Unfortunately, humans are the cause for approximately 85% of wildfires leading to billions of dollars worth of damage every year in the United States alone. By predicting where ongoing wildfire will spread, we can mitigate these significant costs by optimally allocating resources to start evacuation and suppression efforts.
+
+Using data of wildfires in the United States from 2012 to 2020 (Huot et al., 2022), the following questions can be answered:
+* Which features are most important in wildfire spread prediction?
+* How accurately can we predict where wildfires will spread?
+
 
 ## Data-Collection
 
-By taking advantage of the accessibility of remote sensing data using Google Earth Engine, the dataset consists of 11 environmental features: 
+By accessing the remote sensing technologies, Moderate Resolution Imaging Spectroradiometer (MODIS), Visible Infrared Imaging Radiometer Suite (VIIRS), and Shuttle Radar Topography Mission (SRTM); and combining the data using Google Earth Engine, the dataset consists of 11 environmental features: 
 * energy release component (fire strength)
 * elevation
 * drought
