@@ -21,23 +21,23 @@ Team members: -->
 
 ## Introduction
 
-Humans cause approximately 85% of wildfires leading to billions of dollars worth of damage every year in the United States alone. By predicting where ongoing wildfire will spread, we can mitigate these significant costs by optimally allocating resources to start suppression efforts.
+Humans cause approximately 85% of wildfires which leads to billions of dollars worth of damage every year in the United States alone. By predicting where ongoing wildfire will spread, we can mitigate these significant costs by optimally allocating resources to start suppression efforts.
 
 ## Data-Collection
 
 For each fire, the dataset has tweleve defining features:
-* Previous fire mask
-* ERC
-* Elevation
-* Drought
-* Minimum temperature
-* Maximum temperature
-* Wind direction
-* Vegetation
-* Precipitation
-* Population
-* Humidity
-* Wind speed
+* previous fire mask
+* energy release component (fire strength)
+* elevation
+* drought
+* minimum temperature
+* maximum temperature
+* wind direction
+* vegetation
+* precipitation
+* population
+* humidity
+* wind speed
 
 The data is presented as 64 km x 64 km grids with 1 km resolution. We randomly crop a 32 km x 32 km square from each region for training, to reduce the computational complexity. We use the middle 32 km x 32 km square from each region for validation and testing. 
 
@@ -53,11 +53,15 @@ The most important features in predicting wildfire spread are:
 * energy release component
 
 
-
 ## Predictability-of-Wildfire-Spread
 
+This problem is challenging because approximately 98% of the data is not on fire. We also make the assumption that no fire suppression efforts have been made from day to day.
 
 ## Modeling-Approach
+
+The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1 by 1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you. In the image here, you can see they end up predicting that there will be a fire where there already is a fire, but it doesn’t spread. This works as a baseline, but it’s not very helpful. 
+
+Neural network allows us to account for the location and direction of the fire.
 
 
 ## Conclusions-and-Future-Directions
