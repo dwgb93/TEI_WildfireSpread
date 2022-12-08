@@ -64,9 +64,13 @@ Predicting wildfire spread from this dataset is challenging because approximatel
 
 ## Modeling-Approach
 
-We used 3 models:
+To determine the locations that will be on fire the next day, we used 3 models:
 1. Sklearn classifiers: Logistic Regression and Random Forest
 2. TensorFlow: Convolutional Neural Network. 
+
+Precision indicates the fraction of our fire predictions that are accurate whereas recall gives the fraction of the actual fires that are correctly predicted. The area under the precision–recall curve provides a more effective metric for imbalanced binary classification since the dataset mostly contained no fire.
+
+The precision, recall, and area under the precision-recall curve rates of the models are given in the table below.
 
 | Model | Precision | Recall  | AUC (PR) |
 |:--------:|:-------:|:------:|:------:|
@@ -76,10 +80,7 @@ We used 3 models:
 
 Table: * denotes the value is better than the baseline and the boldened values represent the overall best model.
 
-
-Precision and recall was used to determine the locations that will be on fire the next day.
-
-The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1 by 1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you. These models can work as a baseline, but they are not going to be very helpful. 
+The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1x1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you or not. These models can work as a baseline, but they are not very helpful. 
 
 Neural network uses spatial information along with 2.3 million parameters to predict whether each 1x1 km area will be on fire or not.
 
