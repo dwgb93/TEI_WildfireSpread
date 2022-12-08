@@ -123,3 +123,16 @@ In the future, these models could be applied to international data to predict wi
 
 These wildfire spread prediction models could potentially save the United States hundreds of thousands of dollars in suppression efforts. The models can decrease the time in which resources are allotted, which will lead to a decrease in fire damage.
 
+## Description of Repository
+The repository is very simple: all the notebooks we used for visualizing, analyzing, and evaluating the data are in the _notebooks_ folder!
+
+* [kaggle_next_day_wildfire_demo.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/kaggle_next_day_wildfire_demo.ipynb) - This is a Jupyter Notebook demonstrating how to load and parse the data set. It was copied directly from the authors' [GitHub page](https://github.com/google-research/google-research/tree/master/simulation_research/next_day_wildfire_spread) and tweaked slightly to remove bugs.
+* [Wildfire_EDA.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/Wildfire_EDA.ipynb) - Contains exploratory data analysis, including findinding outliers (nevative elevation/wind speed, absolute 0 temperature, etc.), and calculating properties of the data set (how much fire is there? how much data is missing?)
+
+The next three notebooks contain the three models we used to predict fire spread: Logistic Regression, Random Forst, Convolutional Neural Network (U-Net). For each of them, they import the dataset from Google Drive (you will have to change the location to where your data is stored locally), run the commands from [kaggle_next_day_wildfire_demo.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/kaggle_next_day_wildfire_demo.ipynb) to parse and normalize the inputs, then train the model and output the relevant statistics. 
+
+* [Logistic_Regression_Modeling.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/Logistic_Regression_Modeling.ipynb) - We use Logistic Regression with no penalty on the entire 14,979 fires in the training set. This takes several minutes to run! Only datapoints with labels "0: No fire" or "1: Fire" are used for training. "-1: No Data" is neither used for training nor inference, allowing us to calculate precision, recall, and Area Under Curve (PR).
+* [Random_Forest_Modeling.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/Random_Forest_Modeling.ipynb) - Same as above, it imports and normalizes the data, then performs a Grid Search to find the optimal parameter set for modeling. We found that [Maximum Depth: 4, Number of trees: 200, Number of Samples: 20000] performs best. It then re-trains that best model and reports precision, recall, and AUC (PR).
+* [UNET_Model.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/UNET_Model.ipynb) - After importing and normalizing the data, it runs it through a 14 layer U-Net convolutional neural network with BinaryCrossentropy loss (0: No Fire/1: Fire) with the [Adam Optimizer](https://arxiv.org/abs/1412.6980). Because the labels also contain missing data (-1: No Data), the functions at the beginning return sample weights of 0 for those pixels, ensuring they don't corrupt the model (which only outputs values on the interval [0, 1]).
+
+
