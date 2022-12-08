@@ -55,7 +55,7 @@ The most important features in predicting wildfire spread are:
 
 ## Predictability-of-Wildfire-Spread
 
-This problem is challenging because approximately 98% of the data is not on fire. We also make the assumption that no fire suppression efforts have been made from day to day.
+Predicting wildfire spread from this dataset is challenging because approximately 98% of the data is not on fire. We also make the assumption that no fire suppression efforts have been made from day to day.
 
 ## Modeling-Approach
 
