@@ -52,7 +52,7 @@ Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 98% of
 
 ## Exploratory-Data-Analysis
 
-The most important features that predict wildfire spread in the logistic regression model is:
+The most important features that predict wildfire spread in the **logistic regression model** is:
 
 
 | Feature | Importance |
@@ -71,9 +71,8 @@ The most important features that predict wildfire spread in the logistic regress
 | Vegetation | (-) 0.000200 |
 
 
-And in the random forest model:
+And in the **random forest model**:
 
-|Random Forest || |
 | Feature | Importance |
 |:------:|:------:|
 | Previous Fire Boundary | 0.627122 |
