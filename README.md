@@ -106,7 +106,7 @@ The precision, recall, and area under the precision-recall curve rates of the mo
 |:--------:|:-------:|:------:|:------:|
 | Logistic Regression    | 38.48*   | 26.96	   | 19.45	   |
 | Random Forest    | **39.72***  | 26.18	  | 20.67	  |
-| Neural Network    | 32.35   | **41.47** | **27.86*** |
+| Neural Network    | 32.20   | **46.28** | **29.27*** |
 
 Table: * denotes the value is better than the baseline and the boldened values represent the overall best model.
 
