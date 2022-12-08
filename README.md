@@ -70,11 +70,11 @@ We used 3 models:
 
 ```{table} * = Better than baseline and Bold = best model 
 
-| Model | Precision | Recall  | AUC (PR) |
+<| Model | Precision | Recall  | AUC (PR) |
 |:--------:|:-------:|:------:|:------:|
 | Logistic Regression    | 38.48*   | 26.96	   | 19.45	   |
 | Random Forest    | **39.72***  | 26.18	  | 20.67	  |
-| Neural Network    | 32.35   | **41.47** | **27.86** |
+| Neural Network    | 32.35   | **41.47** | **27.86** |>
 ```
 In the table above, 
 
