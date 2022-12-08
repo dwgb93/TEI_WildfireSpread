@@ -92,7 +92,7 @@ And in the **random forest model**:
 ## Predictability of Wildfire Spread
 
 Predicting wildfire spread from this dataset is challenging because 97% of the data is _not_ on fire. Although we only care about the 1% of the data representing fire, we can trivially achieve a 97% accuracy score by predicting that nothing is on fire. Despite the high number, this data would be useless to first reponders or civilians, so we focus on Precision and Recall instead.
-Again, it is trivial to manipulate these numbers to appear better than they are (e.g. predicting everything is on fire to achieve a 100% recall), so we report the precision and recall that maximize the F1-score, along with the area under the precision/recall curve.
+Again, it is trivial to manipulate these numbers to appear better than they are (e.g. predicting everything is on fire to achieve a 100% recall), so we report the precision and recall that maximize the F1-score, along with the area under the precision/recall curve - AUC (PR).
 
 Predicting wildfire spread is an inherently challenging problem, because fire behaves according to both natural and unnatural controls. Our model attemps to account for natural controls (wind, vegetation, natural elevation-based firebreaks), but is otherwise completely unable to account for anthropogenic controls like dumping water or setting up man-made firebreaks. As such, the model inherently assumes that no fire suppression efforts are being made, which reduces performance considerably. 
 
@@ -102,7 +102,7 @@ To determine the locations that will be on fire the next day, we used 3 models:
 1. Sklearn classifiers: Logistic Regression and Random Forest
 2. Keras: Convolutional Neural Network. 
 
-Precision indicates the fraction of our fire predictions that are accurate whereas recall gives the fraction of the actual fires that are correctly predicted. The area under the precision–recall curve provides a more effective metric for imbalanced binary classification since the dataset mostly contained no fire.
+Precision indicates the fraction of our fire predictions that are accurate whereas recall gives the fraction of the actual fires that are correctly predicted. The area under the precision–recall curve (AUC) provides a more effective metric for imbalanced binary classification since the dataset mostly contained no fire.
 
 The precision, recall, and area under the precision-recall curve rates of the models are given in the table below.
 
@@ -110,7 +110,7 @@ The precision, recall, and area under the precision-recall curve rates of the mo
 |:--------:|:-------:|:------:|:------:|
 | Logistic Regression    | 38.48*   | 26.96	   | 19.45	   |
 | Random Forest    | **39.72***  | 26.18	  | 20.67	  |
-| Neural Network    | 32.20   | **46.28** | **29.27*** |
+| Neural Network    | 32.20   | **46.28*** | **29.27*** |
 
 Table: * denotes the value is better than the baseline and the **boldened** values represent the overall best model.
 
