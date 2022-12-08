@@ -74,7 +74,7 @@ We used 3 models:
 | Random Forest    | **39.72***  | 26.18	  | 20.67	  |
 | Neural Network    | 32.35   | **41.47** | **27.86** |
 
-Table: A Caption
+Table: * denotes the value is better than the baseline and the boldened values represent the overall best model.
 
 
 Precision and recall was used to determine the locations that will be on fire the next day.
