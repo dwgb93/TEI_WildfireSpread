@@ -124,7 +124,7 @@ The precision, recall, and AUC (PR) of the models are calculated on the test set
 | Random Forest    | **39.72***  | 26.18	  | 20.67	  |
 | Neural Network    | 32.20   | **46.28*** | **29.27*** |
 
-Table: * denotes the value is better than the baseline and the **boldened** values represent the overall best model.
+Table: * denotes the value is SOTA and the **boldened** values represent the overall best model.
 
 The logistic regression and random forest models lacked spatial awareness of how fire spreads. Similar to a feed forward neural network, they treat each 1x1 km sample as independent. This means, if wind is coming from the north, these algorithms have no information on whether there is fire is north of you. As such, they are unable to accurately predict whether the fire will spread to you or not, instead predicting that the fire will persist in its current location. These models can work as a baseline, but they are not very helpful. 
 
@@ -139,7 +139,14 @@ The neural network was based on the [U-Net Architecture](https://arxiv.org/abs/1
 
 <img src="https://github.com/dwgb93/TEI_WildfireSpread/blob/main/pictures/UNET_pred.png?raw=True" width="600">
 
-Trained models can be downloaded directly from my [Google Drive](https://drive.google.com/drive/folders/1_HEuOmU_MhZ0AR2YV0ofNU6gRVByrdsz?usp=sharing), since they were slightly too big to upload to GitHub.
+Due to the adversarial nature of the dataset mentioned in the [Exploratory Data Analysis](#Exploratory-Data-Analysis), not all fire data lends itself to accurate predictions. When data is missing or the fire was cropped out of the image, all three models default to predicting No Fire (or rather <2% chance of there being fire). 
+
+**Adversarial Predictions:**
+
+![My image](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/pictures/AdversarialPredictions.png?raw=True)
+
+
+Trained U-Net models can be downloaded directly from my [Google Drive](https://drive.google.com/drive/folders/1_HEuOmU_MhZ0AR2YV0ofNU6gRVByrdsz?usp=sharing), since they were slightly too big to upload to GitHub.
 
 * UNET_Binary uses BinaryCrossentropy loss
 * UNET_Binary_AUC uses AUC (PR) as a metric instead of defaut accuracy
