@@ -71,7 +71,7 @@ The most important features that predict wildfire spread in the logistic regress
 
 And in the random forest model:
 
-||Random Forest||
+|Random Forest || |
 | Feature | Importance |
 |:------:|:------:|
 | Previous Fire Boundary | 0.627122 |
