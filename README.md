@@ -31,17 +31,17 @@ Using data of wildfires in the United States from 2012 to 2020 (Huot et al., 202
 ## Data-Collection
 
 By accessing the remote sensing technologies and combining the data via Google Earth Engine (GEE), the dataset consists of 11 environmental features: 
-* energy release component (fire strength)
-* elevation
-* drought
-* minimum temperature
-* maximum temperature
-* wind direction
-* vegetation
-* precipitation
-* population
-* humidity
-* wind speed
+* Drought
+* Elevation
+* Energy Release (fire strength)
+* Humidity
+* Minimum Temperature
+* Maximum Temperature
+* Population
+* Precipitation
+* Vegetation
+* Wind Direction
+* Wind Speed
 
 The dataset also has an additional feature that includes the previous fire mask making the dataset have 18,545 fire events which are presented as 64 km x 64 km grids with 1 km resolution. We randomly crop a 32 km x 32 km square from each region for training, to reduce the computational complexity. We use the middle 32 km x 32 km square from each region for validation and testing. 
 
@@ -51,11 +51,37 @@ Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 98% of
 ## Exploratory-Data-Analysis
 
 The most important features that predict wildfire spread in the logistic regression model is:
-
+| Feature | Importance |
+| :------: | :------: | :------: |
+| Previous Fire Boundary | 3.055462 |
+| Wind Direction | 2.939174 |
+| Min Temp | 0.975030 |
+| Population Density | (-) 0.361442 |
+| Energy Release | 0.322639 |
+| Max Temp | (-) 0.292365 |
+| Elevation | 0.181095 |
+| Precipitation | (-) 0.162624 |
+| Drought  | (-) 0.135867 |
+| Wind Velocity | 0.069142 |
+| Humidity | (-) 0.024723 |
+| Vegetation | (-) 0.000200 |
 
 
 And in the random forest model:
-
+| Feature | Importance |
+|:------:|:------:|:------:|
+| Previous Fire Boundary | 0.627122 |
+| Energy Release | 0.112019 |
+| Elevation | 0.057490 |
+| Min Temp | 0.035959 |
+| Population Density | 0.028470 |
+| Max Temp | 0.027971 |
+| Humidity | 0.027614 |
+| Drought | 0.024936 |
+| Vegetation | 0.022217 |
+| Wind Velocity | 0.017163 |
+| Wind Direction | 0.013778 |
+| Precipitation | 0.005260 |
 
 
 ## Predictability-of-Wildfire-Spread
