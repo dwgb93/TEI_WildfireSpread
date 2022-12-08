@@ -54,7 +54,7 @@ The most important features that predict wildfire spread in the logistic regress
 
 
 | Feature | Importance |
-|:------:|:------:|:------:|
+|:------:|:------:|
 | Previous Fire Boundary | 3.055462 |
 | Wind Direction | 2.939174 |
 | Min Temp | 0.975030 |
@@ -73,7 +73,7 @@ And in the random forest model:
 
 
 | Feature | Importance |
-|:------:|:------:|:------:|
+|:------:|:------:|
 | Previous Fire Boundary | 0.627122 |
 | Energy Release | 0.112019 |
 | Elevation | 0.057490 |
