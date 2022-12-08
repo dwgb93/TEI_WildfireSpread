@@ -47,7 +47,7 @@ By accessing the remote sensing technologies and combining the data via Google E
 
 The dataset also has an additional feature that includes the previous fire mask making the dataset have 18,545 fire events which are presented as 64 km x 64 km grids with 1 km resolution. We randomly crop a 32 km x 32 km square from each region for training, to reduce the computational complexity. We use the middle 32 km x 32 km square from each region for validation and testing. 
 
-Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 98% of the total dataset is not on fire. The remaining portion, up to 2.4%, of our data is missing, most likely due to smoke or cloud cover. This data is not used when evaluating the accuracy of the model.
+Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 97% of the total dataset is not on fire, with only ~1% being on fire. The remaining portion, more than 2% of our data is missing, usually due to smoke or cloud cover. This data is not used when evaluating the accuracy of the model.
 
 
 ## Exploratory Data Analysis
@@ -91,7 +91,10 @@ And in the **random forest model**:
 
 ## Predictability of Wildfire Spread
 
-Predicting wildfire spread from this dataset is challenging because approximately 98% of the data is not on fire. We also make the assumption that no fire suppression efforts have been made.  
+Predicting wildfire spread from this dataset is challenging because 97% of the data is _not_ on fire. Although we only care about the 1% of the data representing fire, we can trivially achieve a 97% accuracy score by predicting that nothing is on fire. Despite the high number, this data would be useless to first reponders or civilians, so we focus on Precision and Recall instead.
+Again, it is trivial to manipulate these numbers to appear better than they are (e.g. predicting everything is on fire to achieve a 100% recall), so we report the precision and recall that maximize the F1-score, along with the area under the precision/recall curve.
+
+Predicting wildfire spread is an inherently challenging problem, because fire behaves according to both natural and unnatural controls. Our model attemps to account for natural controls (wind, vegetation, natural elevation-based firebreaks), but is otherwise completely unable to account for anthropogenic controls like dumping water or setting up man-made firebreaks. As such, the model inherently assumes that no fire suppression efforts are being made, which reduces performance considerably. 
 
 ## Modeling Approach
 
@@ -113,9 +116,11 @@ Table: * denotes the value is better than the baseline and the **boldened** valu
 
 The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1x1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you or not. These models can work as a baseline, but they are not very helpful. 
 
-Neural network uses spatial information along with 2.3 million parameters to predict whether each 1x1 km area will be on fire or not. Since the trained model can be evaluated on a new datapoint instantaneously, as soon as the fire mask is created, first responders could run the model in minutes.
+The neural network was based on the [U-Net Architecture](https://arxiv.org/abs/1505.04597), which uses 14 convolutional layers consisting of 2.3 million paramters to take advantage of spatial information within each image to predict whether each 1x1 km area will be on fire or not. In the encoder, we double the number of convolutional filters in each layer every time we halve the resolution using MaxPooling. In the decoder, we do the opposite, halving the number of filters each time we upscale the image using Conv2DTranspose. We also use skip connections at each layer to preserve location information through the bottleneck. This results in the highest recall and AUC measured on the test set, although it tends to overpredict where fire will be.
 
 ![My image](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/pictures/UNET.png?raw=True)
+
+Since the trained model can be evaluated on a new datapoint almost instantaneously, as soon as the fire mask is created, first responders could run the model in minutes, as soon as the environmental data can be aggregated from Google Earth Engine using the steps outlined [here](https://github.com/google-research/google-research/tree/master/simulation_research/next_day_wildfire_spread#data-export).
 
 ## Conclusions and Future Directions
 
@@ -123,7 +128,7 @@ Wildfires are an inevitable part of our lives due to humans being the cause of 8
 
 In the future, these models could be applied to international data to predict wildfire spread in those regions. The models could be improved upon by accounting for existing fire suppression efforts. 
 
-These wildfire spread prediction models could potentially save the United States hundreds of thousands of dollars in suppression efforts. The models can decrease the time in which resources are allotted, which will lead to a decrease in fire damage and deaths.
+These wildfire spread prediction models could potentially save the United States hundreds of thousands of dollars in suppression efforts. The models can decrease the time in which resources are allotted, which will lead to a decrease in fire damage.
 
 ## Description of Repository
 The repository is very simple: all the notebooks we used for visualizing, analyzing, and evaluating the data are in the _notebooks_ folder!
