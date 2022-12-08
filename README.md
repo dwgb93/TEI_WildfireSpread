@@ -68,15 +68,13 @@ We used 3 models:
 1. Sklearn classifiers: Logistic Regression and Random Forest
 2. TensorFlow: Convolutional Neural Network. 
 
-```{table} * = Better than baseline and Bold = best model 
-
-<| Model | Precision | Recall  | AUC (PR) |
+| Model | Precision | Recall  | AUC (PR) |
 |:--------:|:-------:|:------:|:------:|
 | Logistic Regression    | 38.48*   | 26.96	   | 19.45	   |
 | Random Forest    | **39.72***  | 26.18	  | 20.67	  |
-| Neural Network    | 32.35   | **41.47** | **27.86** |>
-```
-In the table above, 
+| Neural Network    | 32.35   | **41.47** | **27.86** |
+
+Table: A Caption
 
 
 Precision and recall was used to determine the locations that will be on fire the next day.
