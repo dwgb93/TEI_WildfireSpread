@@ -121,5 +121,5 @@ Wildfires are an inevitable part of our lives due to humans being the cause of 8
 
 In the future, these models could be applied to international data to predict wildfire spread in those regions. The models could be improved upon by accounting for existing fire suppression efforts. 
 
-These wildfire spread prediction models could potentially save the United States hundreds of thousands of dollars in suppression efforts.
+These wildfire spread prediction models could potentially save the United States hundreds of thousands of dollars in suppression efforts. The models can decrease the time in which resources are allotted, which will lead to a decrease in fire damage.
 
