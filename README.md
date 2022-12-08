@@ -113,7 +113,7 @@ To determine the locations that will be on fire the next day, we used 3 models:
 
 Precision indicates the fraction of our fire predictions that are accurate whereas recall gives the fraction of the actual fires that are correctly predicted. The area under the precision–recall curve (AUC) provides a more effective metric for imbalanced binary classification since the dataset mostly contained no fire.
 
-The precision, recall, and area under the precision-recall curve rates of the models are given in the table below.
+The precision, recall, and AUC (PR) of the models are calculated on the test set, consisting of 1689 new fires, and reported in the table below.
 
 | Model | Precision | Recall  | AUC (PR) |
 |:--------:|:-------:|:------:|:------:|
@@ -128,6 +128,13 @@ The logistic regression and random forest models lacked spatial awareness of the
 The neural network was based on the [U-Net Architecture](https://arxiv.org/abs/1505.04597), which uses 14 convolutional layers consisting of 2.3 million paramters to take advantage of spatial information within each image to predict whether each 1x1 km area will be on fire or not. In the encoder, we double the number of convolutional filters in each layer every time we halve the resolution using MaxPooling. In the decoder, we do the opposite, halving the number of filters each time we upscale the image using Conv2DTranspose. We also use skip connections at each layer to preserve location information through the bottleneck. This results in the highest recall and AUC measured on the test set, although it tends to overpredict where fire will be.
 
 ![My image](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/pictures/UNET.png?raw=True)
+
+Trained models can be downloaded directly from my [Google Drive](https://drive.google.com/drive/folders/1_HEuOmU_MhZ0AR2YV0ofNU6gRVByrdsz?usp=sharing), since they were slightly too big to upload to GitHub.
+
+* UNET_Binary uses BinaryCrossentropy loss
+* UNET_Binary_AUC uses AUC (PR) as a metric instead of defaut accuracy
+* UNET_Upsample uses UpSampling2D before the Conv2DTranspose layer, with a stride of 1 instead of 2
+* UNET_Best is whichever model currently achieves the highest AUC on the validation set, and may change.  
 
 Since the trained model can be evaluated on a new datapoint almost instantaneously, as soon as the fire mask is created, first responders could run the model in minutes, as soon as the environmental data can be aggregated from Google Earth Engine using the steps outlined [here](https://github.com/google-research/google-research/tree/master/simulation_research/next_day_wildfire_spread#data-export).
 
@@ -148,7 +155,7 @@ The repository is very simple: all the notebooks we used for visualizing, analyz
 The next three notebooks contain the three models we used to predict fire spread: Logistic Regression, Random Forest, Convolutional Neural Network (U-Net). For each of them, they import the dataset from Google Drive (you will have to change the location to where your data is stored locally), run the commands from [kaggle_next_day_wildfire_demo.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/kaggle_next_day_wildfire_demo.ipynb) to parse and normalize the inputs, then train the model and output the relevant statistics. 
 
 * [Logistic_Regression_Modeling.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/Logistic_Regression_Modeling.ipynb) - We use Logistic Regression with no penalty on the entire 14,979 fires in the training set. This takes several minutes to run! Only datapoints with labels "0: No fire" or "1: Fire" are used for training. "-1: No Data" is neither used for training nor inference, allowing us to calculate precision, recall, and Area Under Curve (PR).
-* [Random_Forest_Modeling.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/Random_Forest_Modeling.ipynb) - Same as above, it imports and normalizes the data, then performs a Grid Search to find the optimal parameter set for modeling. We found that [Maximum Depth: 4, Number of trees: 200, Number of Samples: 20000] performs best. It then re-trains that best model and reports precision, recall, and AUC (PR).
-* [UNET_Model.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/UNET_Model.ipynb) - After importing and normalizing the data, it runs it through a 14 layer U-Net convolutional neural network with BinaryCrossentropy loss (0: No Fire/1: Fire) with the [Adam Optimizer](https://arxiv.org/abs/1412.6980). Because the labels also contain missing data (-1: No Data), the functions at the beginning return sample weights of 0 for those pixels, ensuring they don't corrupt the model (which only outputs values on the interval [0, 1]).
+* [Random_Forest_Modeling.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/Random_Forest_Modeling.ipynb) - Same as above, it imports and normalizes the data, then performs a Grid Search to find the optimal parameter set for modeling. This takes a _very_ long time, so feel free to just skip to the optimal hyperparameters. We found that [Maximum Depth: 4, Number of trees: 200, Number of Samples: 20000] performs best. It then re-trains that best model and reports precision, recall, and AUC (PR).
+* [UNET_Model.ipynb](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/notebooks/UNET_Model.ipynb) - After importing and normalizing the data, it runs it through a 14 layer U-Net convolutional neural network with BinaryCrossentropy loss (0: No Fire/1: Fire) with the [Adam Optimizer](https://arxiv.org/abs/1412.6980). Because the labels also contain missing data (-1: No Data), the function at the beginning was modified to return sample weights of 0 for those pixels, ensuring they don't corrupt the model (which only outputs values on the interval [0, 1]).
 
 
