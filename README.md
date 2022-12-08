@@ -30,7 +30,7 @@ Using data of wildfires in the United States from 2012 to 2020 (Huot et al., 202
 
 ## Data Collection
 
-Our dataset was aggregrated from the following remote-sensing sources:
+Our dataset was aggregated via Google Earth Engine from the following remote-sensing sources:
 * [Moderate Resolution Imaging Spectroradiometer (MODIS)](https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD14A1?hl=en#description)
 * [Shuttle Radar Topography Mission (SRTM)](https://developers.google.com/earth-engine/datasets/catalog/USGS_SRTMGL1_003?hl=en)
 * [Gridded Surface Meteorological data set (GRIDMET)](https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_GRIDMET?hl=en)
@@ -38,7 +38,7 @@ Our dataset was aggregrated from the following remote-sensing sources:
 * [NASA Vegetation Indices (VIIRS)](https://developers.google.com/earth-engine/datasets/catalog/NOAA_VIIRS_001_VNP13A1?hl=en)
 * [Gridded Population of World Version 4 (GPWv4)](https://developers.google.com/earth-engine/datasets/catalog/CIESIN_GPWv411_GPW_Population_Density?hl=en)
 
-By accessing the remote sensing technologies and combining and standardizing the data via Google Earth Engine (GEE), the dataset consists of 11 environmental features: 
+The dataset consists of 11 environmental features: 
 * Drought
 * Elevation
 * Energy Release (fire strength)
@@ -103,8 +103,8 @@ And in the **random forest model**:
 
 ## Predictability of Wildfire Spread
 
-Predicting wildfire spread from this dataset is challenging because 97% of the data is _not_ on fire. Although we only care about the 1% of the data representing fire, we can trivially achieve a 97% accuracy score by predicting that nothing is on fire. Despite the high number, this data would be useless to first reponders or civilians, so we focus on Precision and Recall instead.
-Again, it is trivial to manipulate these numbers to appear better than they are (e.g. predicting everything is on fire to achieve a 100% recall), so we report the precision and recall that maximize the F1-score, along with the area under the precision/recall curve - AUC (PR).
+Predicting wildfire spread from this dataset is challenging because 97% of the data is _not_ on fire. Although we only care about the 1% of the data representing fire, we can achieve a 97% accuracy score by predicting that nothing is on fire. Despite the high number, this data would be useless to first reponders or civilians, so we focus on Precision and Recall instead.
+Again, it is easy to manipulate these numbers to appear better than they are (e.g. predicting everything is on fire to achieve a 100% recall), so we report the precision and recall that maximize the F1-score, along with the area under the precision/recall curve - AUC (PR).
 
 Predicting wildfire spread is an inherently challenging problem, because fire behaves according to both natural and unnatural controls. Our model attemps to account for natural controls (wind, vegetation, natural elevation-based firebreaks), but is otherwise completely unable to account for anthropogenic controls like dumping water or setting up man-made firebreaks. As such, the model inherently assumes that no fire suppression efforts are being made, which reduces performance considerably. 
 
