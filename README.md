@@ -7,6 +7,7 @@ F. Huot, R. L. Hu, N. Goyal, T. Sankar, M. Ihme, and Y.-F. Chen, “[Next Day Wi
 
 
 
+
 <!-- ## About Team Mahogany
 Team members: -->
 
@@ -30,7 +31,7 @@ Using data of wildfires in the United States from 2012 to 2020 (Huot et al., 202
 
 ## Data-Collection
 
-By accessing the remote sensing technologies, Moderate Resolution Imaging Spectroradiometer (MODIS), Visible Infrared Imaging Radiometer Suite (VIIRS), and Shuttle Radar Topography Mission (SRTM); and combining the data using Google Earth Engine, the dataset consists of 11 environmental features: 
+By accessing the remote sensing technologies, Moderate Resolution Imaging Spectroradiometer (MODIS), Gridded Surface Meteorological Dataset (GRIDMET), Visible Infrared Imaging Radiometer Suite (VIIRS), and Shuttle Radar Topography Mission (SRTM); and combining the data using Google Earth Engine, the dataset consists of 11 environmental features: 
 * energy release component (fire strength)
 * elevation
 * drought
@@ -47,15 +48,44 @@ The dataset also has an additional feature that includes the previous fire mask 
 
 Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 98% of the total dataset is not on fire. The remaining portion, up to 2.4%, of our data is missing, most likely due to smoke or cloud cover. This data is not used when evaluating the accuracy of the model.
 
+The complete dataset can be downloaded from [Kaggle](https://www.kaggle.com/datasets/fantineh/next-day-wildfire-spread) or copied from [My Google Drive](https://drive.google.com/drive/folders/1oHG6-xIn4200OybdLwQZ_dYyLbZYk8c3?usp=sharing)
+
 
 ## Exploratory-Data-Analysis
 
 The most important features that predict wildfire spread in the logistic regression model is:
-
+|	**Feature**	| **Importance** |
+|-----|-----|-----|
+|Previous Fire Boundary|3.055462|
+|Wind Direction	|2.939174|
+|Min Temp	|0.975030|
+|Population Density|(-)	0.361442	|
+|Energy Release|	0.322639	|
+|Max Temp	|(-) 0.292365|	
+|Elevation|	0.181095|
+|Precip|(-)	0.162624	|
+|Drought	|(-) 0.135867|
+|Wind Velocity	|0.069142|
+|Humidity	|(-)0.024723|
+|Vegetation	|(-) 0.000200	|
 
 
 And in the random forest model:
 
+|	**Feature**	| **Importance** |
+|-----|-----|-----|
+|Previous Fire Boundary|	0.627122|
+|Energy Release|	0.112019|
+|Elevation|	0.057490|
+|Min Temp|	0.035959|
+|Population Density	|0.028470|
+|Max Temp	|0.027971|
+|Humidity	|0.027614|
+|Drought	|0.024936|
+|Vegetation|	0.022217|
+|Wind Velocity|	0.017163|
+|Wind Direction|	0.013778|
+|Precip	|0.005260|
 
 
 ## Predictability-of-Wildfire-Spread
@@ -64,23 +94,22 @@ Predicting wildfire spread from this dataset is challenging because approximatel
 
 ## Modeling-Approach
 
-To determine the locations that will be on fire the next day, we used 3 models:
+We used 3 models:
 1. Sklearn classifiers: Logistic Regression and Random Forest
 2. TensorFlow: Convolutional Neural Network. 
 
-Precision indicates the fraction of our fire predictions that are accurate whereas recall gives the fraction of the actual fires that are correctly predicted. The area under the precision–recall curve provides a more effective metric for imbalanced binary classification since the dataset mostly contained no fire.
-
-The precision, recall, and area under the precision-recall curve rates of the models are given in the table below.
-
 | Model | Precision | Recall  | AUC (PR) |
-|:--------:|:-------:|:------:|:------:|
+|--------|-------|------|------|
 | Logistic Regression    | 38.48*   | 26.96	   | 19.45	   |
 | Random Forest    | **39.72***  | 26.18	  | 20.67	  |
-| Neural Network    | 32.35   | **41.47** | **27.86** |
+| Neural Network    |  32.20 | **46.28*** |**29.27*** |
 
-Table: * denotes the value is better than the baseline and the boldened values represent the overall best model.
+Table: A Caption
 
-The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1x1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you or not. These models can work as a baseline, but they are not very helpful. 
+
+Precision and recall was used to determine the locations that will be on fire the next day.
+
+The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1 by 1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you. These models can work as a baseline, but they are not going to be very helpful. 
 
 Neural network uses spatial information along with 2.3 million parameters to predict whether each 1x1 km area will be on fire or not.
 
