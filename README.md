@@ -43,6 +43,8 @@ By accessing the remote sensing technologies and combining the data via Google E
 * Wind Direction
 * Wind Speed
 
+![My image](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/pictures/ViewDataset.png?raw=True)
+
 The dataset also has an additional feature that includes the previous fire mask making the dataset have 18,545 fire events which are presented as 64 km x 64 km grids with 1 km resolution. We randomly crop a 32 km x 32 km square from each region for training, to reduce the computational complexity. We use the middle 32 km x 32 km square from each region for validation and testing. 
 
 Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 98% of the total dataset is not on fire. The remaining portion, up to 2.4%, of our data is missing, most likely due to smoke or cloud cover. This data is not used when evaluating the accuracy of the model.
