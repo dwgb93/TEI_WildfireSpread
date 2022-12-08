@@ -64,6 +64,21 @@ Predicting wildfire spread from this dataset is challenging because approximatel
 
 ## Modeling-Approach
 
+We used 3 models:
+1. Sklearn classifiers: Logistic Regression and Random Forest
+2. TensorFlow: Convolutional Neural Network. 
+
+
+| Model | Precision | Recall  | AUC (PR) |
+|:--------:|:-------:|:------:|:------:|
+| Logistic Regression    | 38.48*   | 26.96	   | 19.45	   |
+| Random Forest    | 39.72*  | 26.18	  | 20.67	  |
+| Neural Network    | 32.35   | 41.47 | 27.86 |
+
+
+
+Precision and recall was used to determine the locations that will be on fire the next day.
+
 The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1 by 1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you. These models can work as a baseline, but they are not going to be very helpful. 
 
 Neural network uses spatial information along with 2.3 million parameters to predict whether each 1x1 km area will be on fire or not.
