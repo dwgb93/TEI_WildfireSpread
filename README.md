@@ -30,7 +30,15 @@ Using data of wildfires in the United States from 2012 to 2020 (Huot et al., 202
 
 ## Data Collection
 
-By accessing the remote sensing technologies and combining the data via Google Earth Engine (GEE), the dataset consists of 11 environmental features: 
+Our dataset was aggregrated from the following remote-sensing sources:
+* [Moderate Resolution Imaging Spectroradiometer (MODIS)](https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD14A1?hl=en#description)
+* [Shuttle Radar Topography Mission (SRTM)](https://developers.google.com/earth-engine/datasets/catalog/USGS_SRTMGL1_003?hl=en)
+* [Gridded Surface Meteorological data set (GRIDMET)](https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_GRIDMET?hl=en)
+* [GRIDMET Drought data](https://developers.google.com/earth-engine/datasets/catalog/GRIDMET_DROUGHT?hl=en)
+* [NASA Vegetation Indices (VIIRS)](https://developers.google.com/earth-engine/datasets/catalog/NOAA_VIIRS_001_VNP13A1?hl=en)
+* [Gridded Population of World Version 4 (GPWv4)](https://developers.google.com/earth-engine/datasets/catalog/CIESIN_GPWv411_GPW_Population_Density?hl=en)
+
+By accessing the remote sensing technologies and combining and standardizing the data via Google Earth Engine (GEE), the dataset consists of 11 environmental features: 
 * Drought
 * Elevation
 * Energy Release (fire strength)
@@ -47,10 +55,11 @@ By accessing the remote sensing technologies and combining the data via Google E
 
 The dataset also has an additional feature that includes the previous fire mask making the dataset have 18,545 fire events which are presented as 64 km x 64 km grids with 1 km resolution. We randomly crop a 32 km x 32 km square from each region for training, to reduce the computational complexity. We use the middle 32 km x 32 km square from each region for validation and testing. 
 
-Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 97% of the total dataset is not on fire. The remaining portion, more than 2% of our data is missing, usually due to smoke or cloud cover. This data is not used for training or evaluating the accuracy of the model.
-
+The dataset can be downloaded directly from [Kaggle](https://www.kaggle.com/datasets/fantineh/next-day-wildfire-spread) or can be compiled (and updated) from Google Earth Engine using the steps outlined [here](https://github.com/google-research/google-research/tree/master/simulation_research/next_day_wildfire_spread#data-export). 
 
 ## Exploratory Data Analysis
+
+Only ~1% of the land in each 64 km x 64 km grid is on fire. Approximately 97% of the total dataset is not on fire. The remaining portion, more than 2% of our data is missing, usually due to smoke or cloud cover. This data is not used for training or evaluating the accuracy of the model.
 
 The most important features that predict wildfire spread in the **logistic regression model** are:
 
