@@ -123,11 +123,18 @@ The precision, recall, and AUC (PR) of the models are calculated on the test set
 
 Table: * denotes the value is better than the baseline and the **boldened** values represent the overall best model.
 
-The logistic regression and random forest models lacked spatial awareness of the fire spread. Like a feed forward neural network, they treat each 1x1 km sample as independent. For example, if wind is coming from the north, these algorithms have no information on if fire is north of you. They are unable to accurately predict whether the fire will spread to you or not. These models can work as a baseline, but they are not very helpful. 
+The logistic regression and random forest models lacked spatial awareness of how fire spreads. Similar to a feed forward neural network, they treat each 1x1 km sample as independent. This means, if wind is coming from the north, these algorithms have no information on whether there is fire is north of you. As such, they are unable to accurately predict whether the fire will spread to you or not, instead predicting that the fire will persist in its current location. These models can work as a baseline, but they are not very helpful. 
+
+![My image](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/pictures/BadPreds.png?raw=True)
+
 
 The neural network was based on the [U-Net Architecture](https://arxiv.org/abs/1505.04597), which uses 14 convolutional layers consisting of 2.3 million paramters to take advantage of spatial information within each image to predict whether each 1x1 km area will be on fire or not. In the encoder, we double the number of convolutional filters in each layer every time we halve the resolution using MaxPooling. In the decoder, we do the opposite, halving the number of filters each time we upscale the image using Conv2DTranspose. We also use skip connections at each layer to preserve location information through the bottleneck. This results in the highest recall and AUC measured on the test set, although it tends to overpredict where fire will be.
 
 ![My image](https://github.com/dwgb93/TEI_WildfireSpread/blob/main/pictures/UNET.png?raw=True)
+
+**U-Net Prediction:**
+
+<img src="https://github.com/dwgb93/TEI_WildfireSpread/blob/main/pictures/UNET_pred.png?raw=True" width="600">
 
 Trained models can be downloaded directly from my [Google Drive](https://drive.google.com/drive/folders/1_HEuOmU_MhZ0AR2YV0ofNU6gRVByrdsz?usp=sharing), since they were slightly too big to upload to GitHub.
 
