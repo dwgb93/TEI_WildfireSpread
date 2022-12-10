@@ -122,7 +122,7 @@ The precision, recall, and AUC (PR) of the models are calculated on the test set
 |:--------:|:-------:|:------:|:------:|
 | Logistic Regression    | 38.48*   | 26.96	   | 19.45	   |
 | Random Forest    | **39.72***  | 26.18	  | 20.67	  |
-| Neural Network    | 32.20   | **46.28*** | **29.27*** |
+| Neural Network    | 33.51   | **42.41** | **29.72*** |
 
 Table: * denotes the value is SOTA and the **boldened** values represent the overall best model.
 
